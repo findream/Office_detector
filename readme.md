@@ -2,6 +2,7 @@
 * pip install logger
 * pip install oletools
 * pip install win_unicode_console
+* pip install pcodedmp
 
 # 0x02 使用
 * python detectoffice.py officefile
