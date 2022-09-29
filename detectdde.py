@@ -7,7 +7,8 @@ from oletools.record_base import OleFileIO
 import common
 import os
 import shutil
-import oletools.xls_parser
+#import oletools.xls_parser
+import oletools.xls_parser as xls_parser
 import record
 import doc_olefile
 import olefile

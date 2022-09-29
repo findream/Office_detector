@@ -33,22 +33,27 @@ def main():
 
     # detecttargetmacro
     if filetype == common.FILETYPE_DOCX or filetype == common.FILETYPE_XLSX or filetype == common.FILETYPE_PPTX:
+        print("[+] remotemacro:")
         detectremotemacro.detect_remotemacro(filepath)
 
     # detect rtf
     if filetype == common.FILETYPE_RTF:
+        print("[+] rtf object:")
         if rtfparse.detect_rtf(filepath) == True:
-            common._info("suspicious rtf object")
+            common._info("[*] suspicious rtf object")
             # by tianfeng@360.cn
-            GetUrlFromRtf.main(filepath)
+        print("[+] url in rtf:")
+        GetUrlFromRtf.main(filepath)
 
     # detectdde
+    print("[+] dde:")
     DetectDDE = detectdde.DETECTDDE(filepath,filetype)
     DetectDDE.detect_dde()
 
     # TODO:detectmacro
 
     # vba stomping
+    print("[+] Vba Stomping:")
     if common.isVbaStomping(filepath) == True:
         pcode2code.process(filepath)
 

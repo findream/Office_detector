@@ -400,7 +400,6 @@ def detect_rtf(filepath):
             for eachindex in Index_Objdata:
                 result.append(GetObjdata(data,eachindex))
         else:
-            print("\t No objdata")
             return False
     if True in result:
         return True

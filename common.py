@@ -81,7 +81,6 @@ def get_file_type(filepath):
     try:
         doctype = ooxml.get_type(filepath)
     except Exception:
-        _error("%s is not a office file" % filepath)
         return None
 
     if doctype == ooxml.DOCTYPE_EXCEL:
@@ -99,8 +98,10 @@ def isVbaStomping(filename):
     try:
         vbaParser = VBA_Parser(filename)
         if vbaParser.ole_file is None:
-             if vbaParser.ole_subfiles != None:
-                flag = True      
+            if vbaParser.ole_subfiles is None:
+                vbaProjects = vbaParser.find_vba_projects()
+                if vbaProjects is not None:
+                    flag = True
     except Exception as e:
         print('Error: {}.'.format(e), file=sys.stderr)
     return flag

@@ -1,8 +1,8 @@
 #coding = utf-8
 from struct import unpack
 import common
-import oletools.record_base
-import oletools.xls_parser
+import oletools.record_base 
+import oletools.xls_parser as xls_parser
 
 
 # 遍历整块数据段
