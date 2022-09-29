@@ -98,10 +98,14 @@ def isVbaStomping(filename):
     try:
         vbaParser = VBA_Parser(filename)
         if vbaParser.ole_file is None:
-            if vbaParser.ole_subfiles is None:
-                vbaProjects = vbaParser.find_vba_projects()
+            for subFile in vbaParser.ole_subfiles:
+                vbaProjects = subFile.find_vba_projects()
                 if vbaProjects is not None:
                     flag = True
+        else:
+            vbaProjects = vbaParser.find_vba_projects()
+            if vbaProjects is not None:
+                flag = True
     except Exception as e:
         print('Error: {}.'.format(e), file=sys.stderr)
     return flag
