@@ -3,6 +3,7 @@ detectoffice:detect office file
    [*] dynamic data exchange 
    [*] remate macro
    [*] rtf object
+   [*] vba stomping
 
 author:HaCky
 
@@ -48,7 +49,8 @@ def main():
     # TODO:detectmacro
 
     # vba stomping
-    pcode2code.process(filepath)
+    if common.isVbaStomping(filepath) == True:
+        pcode2code.process(filepath)
 
 
 

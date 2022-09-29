@@ -4,10 +4,12 @@ import ooxml
 import olefile
 from oletools.xls_parser import is_xls
 from oletools.ppt_record_parser import is_ppt 
+from oletools.olevba import VBA_Parser
 #import xls_parser
 #import ppt_record_parser
 import logger
 import os
+import sys
 
 FILETYPE_XLS = "xls"
 FILETYPE_PPT = "ppt"
@@ -90,6 +92,19 @@ def get_file_type(filepath):
     # pptx
     if doctype in (ooxml.DOCTYPE_POWERPOINT,ooxml.DOCTYPE_MIXED):
         return FILETYPE_PPTX
+
+def isVbaStomping(filename):
+    flag = False
+    vbaParser = None
+    try:
+        vbaParser = VBA_Parser(filename)
+        if vbaParser.ole_file is None:
+             if vbaParser.ole_subfiles != None:
+                flag = True      
+    except Exception as e:
+        print('Error: {}.'.format(e), file=sys.stderr)
+    return flag
+    
 
 
 
