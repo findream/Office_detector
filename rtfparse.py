@@ -1,11 +1,11 @@
 #coding = utf-8
 import re
 import sys
-from oleobj import OleObject
-from oleobj import OleNativeStream
+from oletools.oleobj import OleObject
+from oletools.oleobj import OleNativeStream
+from oletools.common.clsid import KNOWN_CLSIDS
 from olefile import isOleFile
 from olefile import OleFileIO
-from clsid import KNOWN_CLSIDS
 import binascii
 import hashlib
 

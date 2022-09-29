@@ -16,6 +16,8 @@ import common
 import detectdde
 import detectremotemacro
 import rtfparse
+import GetUrlFromRtf
+import pcode2code
 
 
 def main():
@@ -29,19 +31,25 @@ def main():
     filetype = common.get_file_type(filepath)
 
     # detecttargetmacro
-    if filetype == common.FILETYPE_DOCX:
+    if filetype == common.FILETYPE_DOCX or filetype == common.FILETYPE_XLSX or filetype == common.FILETYPE_PPTX:
         detectremotemacro.detect_remotemacro(filepath)
 
     # detect rtf
     if filetype == common.FILETYPE_RTF:
         if rtfparse.detect_rtf(filepath) == True:
             common._info("suspicious rtf object")
+            # by tianfeng@360.cn
+            GetUrlFromRtf.main(filepath)
 
     # detectdde
     DetectDDE = detectdde.DETECTDDE(filepath,filetype)
     DetectDDE.detect_dde()
 
-    # detectmacro
+    # TODO:detectmacro
+
+    # vba stomping
+    pcode2code.process(filepath)
+
 
 
 

@@ -7,12 +7,12 @@ from oletools.record_base import OleFileIO
 import common
 import os
 import shutil
-import xls_parser
+import oletools.xls_parser
 import record
 import doc_olefile
 import olefile
 import sys
-import  zipfile
+import zipfile
 
 OLE_FIELD_START = 0x13
 OLE_FIELD_SEP = 0x14

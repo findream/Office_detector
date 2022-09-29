@@ -2,8 +2,10 @@
 import zipfile
 import ooxml
 import olefile
-import xls_parser
-import ppt_record_parser
+from oletools.xls_parser import is_xls
+from oletools.ppt_record_parser import is_ppt 
+#import xls_parser
+#import ppt_record_parser
 import logger
 import os
 
@@ -59,10 +61,10 @@ def get_file_type(filepath):
     # ole xml?
     if olefile.isOleFile(filepath):
         # xls
-        if xls_parser.is_xls(filepath):
+        if is_xls(filepath):
             return FILETYPE_XLS
         # ppt
-        if ppt_record_parser.is_ppt(filepath):
+        if is_ppt(filepath):
             return FILETYPE_PPT
         # doc
         else:

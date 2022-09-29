@@ -21,7 +21,7 @@ def detect_remotemacro(filepath):
                 if elem.attrib["Target"]:
                     common._info("remote macro \n\t %s" % elem.attrib["Target"])
                     return True
-    common._info("remote macro not found")
+    common._info("remote macro not found \n")
     return None
             
             
