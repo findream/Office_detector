@@ -109,9 +109,6 @@ def isVbaStomping(filename):
     except Exception as e:
         print('Error: {}.'.format(e), file=sys.stderr)
     return flag
-    
-
-
 
 
 def main():

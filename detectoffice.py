@@ -4,6 +4,7 @@ detectoffice:detect office file
    [*] remate macro
    [*] rtf object
    [*] vba stomping
+   [*] Excel 4.0
 
 author:HaCky
 
@@ -19,6 +20,7 @@ import detectremotemacro
 import rtfparse
 import GetUrlFromRtf
 import pcode2code
+import excel4_0
 
 
 def main():
@@ -33,12 +35,12 @@ def main():
 
     # detecttargetmacro
     if filetype == common.FILETYPE_DOCX or filetype == common.FILETYPE_XLSX or filetype == common.FILETYPE_PPTX:
-        print("[+] remotemacro:")
+        print("[+] -> remotemacro:")
         detectremotemacro.detect_remotemacro(filepath)
 
     # detect rtf
     if filetype == common.FILETYPE_RTF:
-        print("[+] rtf object:")
+        print("[+] -> rtf object:")
         if rtfparse.detect_rtf(filepath) == True:
             common._info("[*] suspicious rtf object")
             # by tianfeng@360.cn
@@ -46,16 +48,27 @@ def main():
         GetUrlFromRtf.main(filepath)
 
     # detectdde
-    print("[+] dde:")
+    print("[+] -> dde:")
     DetectDDE = detectdde.DETECTDDE(filepath,filetype)
     DetectDDE.detect_dde()
 
     # TODO:detectmacro
 
     # vba stomping
-    print("[+] Vba Stomping:")
+    print("[+] -> Vba Stomping:")
     if common.isVbaStomping(filepath) == True:
-        pcode2code.process(filepath)
+        try:
+            pcode2code.process(filepath)
+        except:
+            common._error("pcode2code.process except")
+
+
+    # Excel4.0
+    print("[+] -> Excel 4.0")
+    if excel4_0.detect_excel4_0(filepath) == True:
+        common._info("may be Excel 4.0")
+    else:
+        common._info("may be not Excel 4.0")
 
 
 
